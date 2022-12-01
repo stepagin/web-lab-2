@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="desctiption" content="ITMO 3 sem laboratory work Web 2">
         <meta name="keywords" content="ITMO, lab, web">
-        <meta name="author" content="yt">
+        <meta name="author" content="Ponamarev Stepan">
         <title>Lab 2 Web</title>
         <link rel="stylesheet" href="./views/main.css" type="text/css">
         <link rel="icon" href="./views/favicon.ico">
@@ -18,13 +18,13 @@
         <table>
             <tr id="header" class="gradient">
                 <td id="group" class="shadow">
-                    <h2>P32301<br></h2>
-                    <h3>321200</h3>
+                    <h2>P32151<br></h2>
+                    <h3>45332</h3>
                 </td>
                 <td id="name"  class="shadow">
-                    <h1>Ovcharenko Aleksandr</h1>
+                    <h1>Понамарев Степан</h1>
                     <h2>
-                    Laboratory Work Web 2
+                    Лабораторная работа №2
                     </h2>
                 </td>
             </tr>
