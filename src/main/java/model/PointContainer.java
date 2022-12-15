@@ -2,11 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class PointContaier {
+public class PointContainer {
     private ArrayList<Point> points;
     private int count;
 
-    public PointContaier() {
+    public PointContainer() {
         points = new ArrayList<>();
         count = 0;
     }
@@ -15,16 +15,17 @@ public class PointContaier {
         return points;
     }
 
-    public int useCount() {
-        count++;
+    public int getCount() {
         return count;
     }
 
     public void addPoint(Point p) {
         points.add(p);
+        count++;
     }
 
     public void clearAllPoints() {
         points.clear();
+        count = 0;
     }
 }

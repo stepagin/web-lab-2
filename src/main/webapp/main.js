@@ -1,20 +1,33 @@
-import {initGraph} from "./graphPrint.js"
+import {initGraph, setPoints} from "./graphPrint.js"
 import {TABLE_URL} from "./constants.js";
+import {bindSendData} from "./dataSending.js";
 
 initGraph();
+window.onload = function () {
+    bindSendData((tableData) => {
+        // console.log(tableData);
+        setPoints(tableData);
+        fillTable(tableData);
+    }, TABLE_URL);
+}
+$.ajax({
+    url: TABLE_URL,
+    type: "get",
+    success: function(response) {
+        setPoints(JSON.parse(response));
+        fillTable(JSON.parse(response));
+    },
+    error: function(xhr) {
+        console.log("Error while requesting points data");
+    }
+});
 
-var w = document.getElementById("warning");
-var table = document.getElementById("form");
-$("#form").submit(function (e){
-    w.innerHTML = $("#input_r").val();
-})
-
-// $.ajax(TABLE_URL, {
-//     type: "get",
-//     success: function (data) {
-//         console.log(data.toString());
-//     },
-//     error: function (err) {
-//         console.log("error !!!");
-//     }
-// });
+function fillTable(tableData) {
+    const tbody = document.getElementById("results");
+    tbody.innerHTML = "";
+    tableData.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${row.attampt}</td><td>${row.x}</td><td>${row.y}</td><td>${row.r}</td><td>${row.result}</td><td>${row.time}</td><td>${row.duration}</td>`;
+        tbody.appendChild(tr);
+    });
+}

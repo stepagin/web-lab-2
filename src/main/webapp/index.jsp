@@ -50,25 +50,53 @@
                 <tr>
                     <td><label for="input_r">R:</label></td>
                     <td id="input_r">
-                        <input type="checkbox" id="R=1" name="R=1" checked>
-                        <label for="R=1">1</label>
-                        <input type="checkbox" id="R=1.5" name="R=1.5">
-                        <label for="R=1.5">1.5</label>
-                        <input type="checkbox" id="R=2" name="R=2">
-                        <label for="R=2">2</label>
-                        <input type="checkbox" id="R=2.5" name="R=2.5">
-                        <label for="R=2.5">2.5</label>
-                        <input type="checkbox" id="R=3" name="R=3">
-                        <label for="R=3">3</label>
+                        <input class="rCheckbox" type="checkbox" id="R1" name="R=1" value="1" checked>
+                        <label for="R1">1</label>
+                        <input class="rCheckbox" type="checkbox" id="R15" name="R=1.5" value="1.5">
+                        <label for="R15">1.5</label>
+                        <input class="rCheckbox" type="checkbox" id="R2" name="R=2" value="2">
+                        <label for="R2">2</label>
+                        <input class="rCheckbox" type="checkbox" id="R25" name="R=2.5" value="2.5">
+                        <label for="R25">2.5</label>
+                        <input class="rCheckbox" type="checkbox" id="R3" name="R=3" value="3">
+                        <label for="R3">3</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input type="submit" value="Проверить">
                     </td>
-                    <td id="warning"></td>
+                    <td id="warning"> There's would be warning</td>
                 </tr>
 
+            </table>
+            <table>
+                <tr>
+                    <td style="padding:1%;text-align:center;">
+                        <h2>Results</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding:1%">
+                        <table id="results">
+                            <thead>
+                            <tr>
+                                <th>Attempt #</th>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>R</th>
+                                <th>Result</th>
+                                <th>Attempt time</th>
+                                <th>Processing time</th>
+                            </tr>
+                            </thead>
+                            <tbody id="items">
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             </table>
         </form>
     </div>

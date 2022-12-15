@@ -3,9 +3,9 @@ import {TABLE_URL, backgroungFigColor, figColor, lineColor, dotsColor, textColor
 
 var graph = null;
 var ctx = null;
-var graphSize = 0;
-var currentR = 2; // TODO: get from URL
-var dotsArray = [];
+export var graphSize = 0;
+var currentR = 1;
+export var dots = [];
 
 export function initGraph() {
     /*
@@ -116,8 +116,7 @@ function drawGraph() {
     ctx.fillText("" + RMax/2, graphSize/2 + arrowBoxSize, graphSize/2 - graphSize*2/10);
     ctx.fillText("" + RMax, graphSize/2 + arrowBoxSize, graphSize/2 - graphSize*4/10);
     ctx.closePath();
-
-    // drawDots();
+    paintPoints();
 }
 
 function setMouseActions() {
@@ -138,6 +137,10 @@ function setMouseActions() {
         ctx.fill();
         ctx.closePath();
     }
+
+    graph.onmouseleave = (e) => {
+        drawGraph();
+    };
 }
 
 function drawFigures(R) {
@@ -188,6 +191,31 @@ function drawTriangle(x1, y1, x2, y2) {
     ctx.translate(-graphSize/2, -graphSize/2);
 }
 
-function drawDots() {
+export function paintPoints() {
+    dots.forEach((dot) => {
+        const x = (dot.x * graphSize*4/10/RMax);
+        const y = (-dot.y * graphSize*4/10/RMax);
+        ctx.fillStyle = dotsColor;
+        ctx.strokeStyle = dotsColor;
+        ctx.translate(graphSize/2, graphSize/2);
+        ctx.beginPath();
+        ctx.arc(x, y, graphSize/200, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+        ctx.translate(-graphSize/2, -graphSize/2);
+    });
+}
 
+export function setPoints(data) {
+    while(dots.length > 0) {
+        dots.pop();
+    }
+    // data.forEach((point) => {console.log(point.x + " " + point.y + " " + point.r)});
+    data.forEach((point) => {dots.push(point)});
+    drawGraph();
+}
+
+export function setR(newR) {
+    currentR = newR;
+    drawGraph();
 }
