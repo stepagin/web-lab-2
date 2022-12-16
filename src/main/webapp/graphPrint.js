@@ -219,3 +219,8 @@ export function setR(newR) {
     currentR = newR;
     drawGraph();
 }
+
+export function clearTable(){
+    dots = [];
+    drawGraph();
+}

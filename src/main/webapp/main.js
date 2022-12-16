@@ -22,8 +22,8 @@ $.ajax({
     }
 });
 
-function fillTable(tableData) {
-    const tbody = document.getElementById("results");
+export function fillTable(tableData) {
+    const tbody = document.getElementById("items");
     tbody.innerHTML = "";
     tableData.forEach((row) => {
         const tr = document.createElement("tr");

@@ -12,6 +12,7 @@ import model.PointContainer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 @WebServlet(name = "ServletController", value = "/table")
 public class ServletController extends HttpServlet {
@@ -20,23 +21,21 @@ public class ServletController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
         context.log("ServletController: doGet");
+        PointContainer table = getTable(context);
 
         if (request.getParameterMap().isEmpty()) {
-            if (context.getAttribute("points") == null) {
-                PointContainer table = new PointContainer();
-                context.setAttribute("points", table);
-                PrintWriter writer = response.getWriter();
-                writer.print(gson.toJson(table.getPoints()));
-                writer.flush();
-                writer.close();
-            } else {
-                PointContainer table = (PointContainer) context.getAttribute("points");
-                context.log(gson.toJson(table.getPoints()));
-                PrintWriter writer = response.getWriter();
-                writer.print(gson.toJson(table.getPoints()));
-                writer.flush();
-                writer.close();
-            }
+            PrintWriter writer = response.getWriter();
+            writer.print(gson.toJson(table.getPoints()));
+            writer.flush();
+            writer.close();
+        } else if (Objects.equals(request.getParameter("clear"), "True")) {
+            table.clearAllPoints();
+            context.setAttribute("points", table);
+            PrintWriter writer = response.getWriter();
+            writer.print(gson.toJson(table.getPoints()));
+            writer.flush();
+            writer.close();
+            request.getRequestDispatcher("./index.jsp").forward(request, response);
         } else if (checkNumberParameter(request, "x") && checkNumberParameter(request, "y") && checkNumberParameter(request, "r")) {
             context.getNamedDispatcher("AreaCheckServlet").forward(request, response);
         } else if (!checkNumberParameter(request, "x")) {
@@ -65,6 +64,16 @@ public class ServletController extends HttpServlet {
             }
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    private PointContainer getTable(ServletContext context) {
+        if (context.getAttribute("points") == null) {
+            PointContainer table = new PointContainer();
+            context.setAttribute("points", table);
+            return table;
+        } else {
+            return ((PointContainer) context.getAttribute("points"));
         }
     }
 }

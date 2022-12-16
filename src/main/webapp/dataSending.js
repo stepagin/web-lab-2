@@ -1,5 +1,6 @@
-import {graphSize, setR} from "./graphPrint.js";
+import {clearTable, graphSize, setR} from "./graphPrint.js";
 import {RMax} from "./constants.js";
+import {fillTable} from "./main.js";
 
 export function bindSendData(callback, URL) {
     var [x, y, r] = getXYR();
@@ -53,6 +54,13 @@ export function bindSendData(callback, URL) {
 
         sendPoint(x, y, r);
     })
+
+
+    $("#clear").click(function (){
+        $.get(URL + "?clear=True");
+        clearTable();
+        fillTable([]);
+    });
 
 
     function getXYR() {

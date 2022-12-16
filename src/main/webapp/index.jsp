@@ -2,31 +2,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
-    <style>
-        body {background-color: #ffdd88;}
-    </style>
+    <meta charset="UTF-8">
+    <meta name="desctiption" content="ITMO 3 sem laboratory work Web 2">
+    <meta name="keywords" content="ITMO, lab, web">
+    <meta name="author" content="Ponamarev Stepan">
+    <title>Lab 2 Web</title>
+    <link rel="stylesheet" href="./main.css" type="text/css">
+    <link rel="icon" href="./favicon.ico">
 </head>
 
 <body>
-    <h1><%= "Hellooo Wooorld!" %></h1><br>
+    <table>
+        <tr id="header" class="gradient">
+            <td id="group" class="shadow">
+                <h2>P32151<br></h2>
+                <h3>45332</h3>
+            </td>
+            <td id="name"  class="shadow">
+                <h1>Понамарев Степан</h1>
+                <h2>
+                    Лабораторная работа №2
+                </h2>
+            </td>
+        </tr>
+    </table>
+    <div id="graph-style">
+        <canvas id="mycanvas">обновите браузер</canvas>
+    </div>
 
-    <a href="hello-servlet">Hello Servlet</a><br>
-
-    <span>canvas start</span>
-
-    <canvas id="mycanvas"></canvas>
-
-    <span>canvas end</span>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script type="module" src="./main.js"></script>
     <div class="form">
         <form id="form">
             <table class="select-table">
                 <tr>
-                    <td><label for="input_x">X:</label></td>
+                    <td class="rightcol"><label for="input_x">X:</label></td>
                     <td>
                         <select name="X" id="input_x">
                             <option value="-5">-5</option>
@@ -34,7 +42,7 @@
                             <option value="-3">-3</option>
                             <option value="-2">-2</option>
                             <option value="-1">-1</option>
-                            <option value="0">0</option>
+                            <option value="0" selected>0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -42,13 +50,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="input_y">Y:</label></td>
+                    <td class="rightcol"><label for="input_y">Y:</label></td>
                     <td>
                         <input type="text" name="Y" id="input_y" maxlength="5" placeholder="(-3 ... 5)">
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="input_r">R:</label></td>
+                    <td class="rightcol"><label for="input_r">R:</label></td>
                     <td id="input_r">
                         <input class="rCheckbox" type="checkbox" id="R1" name="R=1" value="1" checked>
                         <label for="R1">1</label>
@@ -66,7 +74,17 @@
                     <td>
                         <input type="submit" value="Проверить">
                     </td>
-                    <td id="warning"> There's would be warning</td>
+                    <td id="warning"></td>
+                </tr>
+
+                <tr>
+                    <td>----------------</td>
+                    <td>--------------------------</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" id="clear" value="Очистить таблицу">
+                    </td>
                 </tr>
 
             </table>
@@ -100,5 +118,7 @@
             </table>
         </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>
